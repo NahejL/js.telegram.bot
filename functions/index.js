@@ -17,7 +17,7 @@ let botToken
 
 let bot = new Telegraf(botToken)
 
-`https://api.telegram.org/bot${botToken}/getWebhookInfo`
+//`https://api.telegram.org/bot${botToken}/getWebhookInfo`
 
 bot.start(ctx => {
     ctx.reply("start wut?")
