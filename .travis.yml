@@ -1,11 +1,12 @@
 language: node_js
 node_js:
   - 8
+branches:
+  only:
+    - master
 script:
-  - echo "Deploying"
-install:
   - npm install
-  - cd functions && npm install
+  - npm run build
 deploy:
   provider: firebase
   token:
