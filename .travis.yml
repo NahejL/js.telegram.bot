@@ -5,6 +5,7 @@ branches:
   only:
     - master
 script:
+  - npm install -g eslint
   - npm install
 deploy:
   provider: firebase
