@@ -4,11 +4,7 @@ node_js:
 script:
   - echo "Deploying"
 install:
-  - cd functions
-  - npm install firebase-functions
-  - npm install firebase-admin
-  - npm install telegraf
-  - cd ..
+  -npm create
 deploy:
   provider: firebase
   token:
