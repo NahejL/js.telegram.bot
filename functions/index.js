@@ -29,7 +29,7 @@ bot.catch((error, ctx) => {
 })
 
 exports.bot = functions.https.onRequest((req, res) => {
-    console.log(req.body)
-    bot.handleUpdate(req.body, res)
     
+    bot.handleUpdate(req.body, res)
+    res.end()
 })
