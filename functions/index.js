@@ -19,7 +19,9 @@ let bot = new Telegraf(botToken)
 /*bot.on('text', (ctx) => {
     ctx.reply('Hello World')
 })*/
-
+bot.start(ctx => {
+    ctx.reply("start wut?")
+})
 exports.bot = functions.https.onRequest((req, res) => {
     bot.handleUpdate(req.body, res)
 })
