@@ -6,8 +6,8 @@ branches:
     - master
 script:
   - npm install
-  - npm run build
 deploy:
   provider: firebase
   token:
     secure: S8pmoj3Q4ITygxH0JEQBmvjJQivjTxin3bBWyPaxlGTIwlOl71xTA+M/EgSC22LmiEOFFJY+2GJjVqQIl/aULFsZlb3T5UOLxt5UjcbZM3a1wYxsuzMAm0QoLRoTqL3CTBGyLWyaCAJJZbE9xjmB8D0yn7JZsxg8bJJFIZp8whlOOm/KSVNbvTnRQZEM7QCD9OhDSWIFrTLT1pMaB1blwR/ehLmbosALd1gkyuF0zPrheoJvV61mYUhwR9oOmWPZ5l9e69SbKBum0FpBbT1UqUD0FxP+SAIz3RNJtBKZQpmiFR71hlXjYkkEGSwQVtFjmmpIYE+dneBlgv+yLIBAZnxuQjA29RyBQcT9HyOHOdlLvHlM45Zpyz9NKG3MU8F0tAA+zD8eAIT+KgGM8RaDObKU2RdGq3aSsjHu1AfjSnqlA80LdAbPU3XRPESa3k8dmPZifjnrP1xLge3VfMeYG3LKCcZdCwxEFB/Slwu9msXwim+Bqxy+Z3x+G4h0ddupTlfokfxdkNZ5URdTz5/jteiOaydSBMP5Vab65rLeoEb85ZRBqQAcWFsE/Fp+mAxLzPeeF+a6NnFmSOCynVa68A/3RgLFSjoauTCcnhpxCsnD13tJxRoRcNwEvXN0jluVrgPoFJzL1MSLK+kkMyHRsI+5fJKWPY0ggJBX+o9NluE=
+  message: "this is an automatic deployment by travis - CI as a result of pushing to master"
