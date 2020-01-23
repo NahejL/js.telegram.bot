@@ -31,5 +31,5 @@ bot.catch((error, ctx) => {
 exports.bot = functions.https.onRequest((req, res) => {
     
     bot.handleUpdate(req.body, res)
-    res.end()
+    res.end(1)
 })
