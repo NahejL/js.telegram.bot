@@ -4,11 +4,8 @@ node_js:
 script:
   - echo "Deploying"
 install:
-  - npm install -g eslint
-  - npm install -g eslint-plugin-promise
-  - npm install -g firebase-functions
-  - npm install -g firebase-admin
-  - npm install -g telegraf
+  - npm install
+  - cd funtions && npm install
 deploy:
   provider: firebase
   token:
