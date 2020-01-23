@@ -16,12 +16,26 @@ let botToken
 }
 
 let bot = new Telegraf(botToken)
-/*bot.on('text', (ctx) => {
-    ctx.reply('Hello World')
-})*/
+
 bot.start(ctx => {
     ctx.reply("start wut?")
 })
+bot.help(ctx =>{
+    ctx.reply("I'm kinda useless... can't help")
+})
+
+bot.settings(ctx => {
+    ctx.reply("can't do that either...")
+})
+bot.on('inline_query', (ctx) => {
+    ctx.reply(`${ctx.chat}`)
+})
+
+bot.catch((error, ctx) => {
+    console.error(error)
+    ctx.reply('Ouch')
+})
+
 exports.bot = functions.https.onRequest((req, res) => {
     bot.handleUpdate(req.body, res)
 })
