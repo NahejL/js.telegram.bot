@@ -4,10 +4,10 @@ node_js:
 branches:
   only:
     - master
-script:
+before_script:
   - npm install -g eslint
   - npm install
-  - cd functions && npm install
+  - cd functions && npm install #https://stackoverflow.com/questions/53747936/travis-ci-fails-deploy-on-firebase-hosting?answertab=active#tab-top
 deploy:
   provider: firebase
   token:
