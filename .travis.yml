@@ -4,7 +4,9 @@ node_js:
 script:
   - echo "Deploying"
 install:
-  - npm install eslint
+  - npm install firebase-functions
+  - npm install firebase-admin
+  - npm install telegraf
 deploy:
   provider: firebase
   token:
