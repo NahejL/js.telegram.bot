@@ -4,15 +4,28 @@ node_js:
 branches:
   only:
     - master
+git: 
+  quiet: true
+#addons
+#cache
+#before_install
+#install
 before_script:
-  - npm install -g eslint
   - npm install -g firebase-tools
   - npm install
-  - cd functions && npm install #https://stackoverflow.com/questions/53747936/travis-ci-fails-deploy-on-firebase-hosting?answertab=active#tab-top
-script:
-  - firebase deploy --token $FIREBASE_TOKEN
-  #deploy:
-#  provider: firebase
-#  token:
-#    secure: S8pmoj3Q4ITygxH0JEQBmvjJQivjTxin3bBWyPaxlGTIwlOl71xTA+M/EgSC22LmiEOFFJY+2GJjVqQIl/aULFsZlb3T5UOLxt5UjcbZM3a1wYxsuzMAm0QoLRoTqL3CTBGyLWyaCAJJZbE9xjmB8D0yn7JZsxg8bJJFIZp8whlOOm/KSVNbvTnRQZEM7QCD9OhDSWIFrTLT1pMaB1blwR/ehLmbosALd1gkyuF0zPrheoJvV61mYUhwR9oOmWPZ5l9e69SbKBum0FpBbT1UqUD0FxP+SAIz3RNJtBKZQpmiFR71hlXjYkkEGSwQVtFjmmpIYE+dneBlgv+yLIBAZnxuQjA29RyBQcT9HyOHOdlLvHlM45Zpyz9NKG3MU8F0tAA+zD8eAIT+KgGM8RaDObKU2RdGq3aSsjHu1AfjSnqlA80LdAbPU3XRPESa3k8dmPZifjnrP1xLge3VfMeYG3LKCcZdCwxEFB/Slwu9msXwim+Bqxy+Z3x+G4h0ddupTlfokfxdkNZ5URdTz5/jteiOaydSBMP5Vab65rLeoEb85ZRBqQAcWFsE/Fp+mAxLzPeeF+a6NnFmSOCynVa68A/3RgLFSjoauTCcnhpxCsnD13tJxRoRcNwEvXN0jluVrgPoFJzL1MSLK+kkMyHRsI+5fJKWPY0ggJBX+o9NluE=
-#  message: "this is an automatic deployment by travis - CI as a result of pushing to master"
+  - cd functions && npm install
+#script:
+#before_cache (cleaning cache)
+#after_failure:
+  - #$TRAVIS_TEST_RESULT
+#after_success:
+  - #$TRAVIS_TEST_RESULT
+#before_deploy (for each deploy provider)
+deploy:
+  skip_cleanup : true
+  provider: firebase
+  token:
+    secure: S8pmoj3Q4ITygxH0JEQBmvjJQivjTxin3bBWyPaxlGTIwlOl71xTA+M/EgSC22LmiEOFFJY+2GJjVqQIl/aULFsZlb3T5UOLxt5UjcbZM3a1wYxsuzMAm0QoLRoTqL3CTBGyLWyaCAJJZbE9xjmB8D0yn7JZsxg8bJJFIZp8whlOOm/KSVNbvTnRQZEM7QCD9OhDSWIFrTLT1pMaB1blwR/ehLmbosALd1gkyuF0zPrheoJvV61mYUhwR9oOmWPZ5l9e69SbKBum0FpBbT1UqUD0FxP+SAIz3RNJtBKZQpmiFR71hlXjYkkEGSwQVtFjmmpIYE+dneBlgv+yLIBAZnxuQjA29RyBQcT9HyOHOdlLvHlM45Zpyz9NKG3MU8F0tAA+zD8eAIT+KgGM8RaDObKU2RdGq3aSsjHu1AfjSnqlA80LdAbPU3XRPESa3k8dmPZifjnrP1xLge3VfMeYG3LKCcZdCwxEFB/Slwu9msXwim+Bqxy+Z3x+G4h0ddupTlfokfxdkNZ5URdTz5/jteiOaydSBMP5Vab65rLeoEb85ZRBqQAcWFsE/Fp+mAxLzPeeF+a6NnFmSOCynVa68A/3RgLFSjoauTCcnhpxCsnD13tJxRoRcNwEvXN0jluVrgPoFJzL1MSLK+kkMyHRsI+5fJKWPY0ggJBX+o9NluE=
+  message: "this is an automatic deployment by travis - CI as a result of pushing to master"
+#after_deploy (for each deploy provider)
+#after_script
