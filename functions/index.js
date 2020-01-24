@@ -1,35 +1,53 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin')
 const Telegraf = require('telegraf')
+const Express = require('express')
 
-admin.initializeApp()
+(async () => {
+    admin.initializeApp()
 
-let botToken 
-{
-    admin.firestore().collection('root').doc('bot').get()
-    .then(snapshot => {
-        return botToken = snapshot.token
+    const botToken = (await admin.firestore().collection('root').doc('bot').get()).token
+
+    //Set bot
+    const bot = new Telegraf(botToken)
+    bot.hears('elsa', ctx => {
+        ctx.reply('Dum')
     })
-    .catch(error => {
+
+    bot.catch((error, ctx) => {
         console.error(error)
+        ctx.reply('Ouch')
     })
-}
 
-let bot = new Telegraf(botToken)
+    //Set express
+    const express = Express()
+    //`https://api.telegram.org/bot${botToken}/getWebhookInfo`
+    express.use(`/${botToken}`, async (req, res) => {
+        try {
+            //Before bot
+            let updates = req.body
+            
+            console.log(updates)
+        
+            if (!Array.isArray(updates)) updates = [updates]
+        
+            await bot.handleUpdates(updates, res);
+        
+            //After bot
+            if (!res.finished) {
+              return res.end();
+            }
+            return Promise.resolve(res);
+        } 
+        catch (err) {
+            console.error('Webhook error', err);
+            res.writeHead(500);
+            return res.end();
+        }
+    })
 
-//`https://api.telegram.org/bot${botToken}/getWebhookInfo`
-
-bot.hears('elsa', ctx => {
-    ctx.reply('Dum')
-})
-
-bot.catch((error, ctx) => {
-    console.error(error)
-    ctx.reply('Ouch')
-})
-
-exports.bot = functions.https.onRequest((req, res) => {
-    
-    bot.handleUpdate(req.body, res)
-    res.end(1)
-})
+    //Set function
+    const functionName = "bot"
+    exports[functionName] = functions.https.onRequest(express)
+    bot.telegram.setWebhook(`https://${functions.config.bot.region}-${process.env.GCP_PROJECT}.cloudfunctions.net/${functionName}/${botToken}`)
+})()
