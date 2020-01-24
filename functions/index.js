@@ -3,7 +3,7 @@ const admin = require('firebase-admin')
 const Telegraf = require('telegraf')
 const Express = require('express')
 
-(async () => {
+;(async () => {
     admin.initializeApp()
 
     const botToken = (await admin.firestore().collection('root').doc('bot').get()).token
