@@ -12,8 +12,7 @@ git:
 #install
 before_script:
   - npm install -g firebase-tools
-  - npm install
-  - cd functions && npm install
+  - cd functions && npm install && cd ..
 #script:
 #before_cache (cleaning cache)
 #after_failure:
