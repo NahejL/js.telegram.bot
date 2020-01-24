@@ -15,10 +15,10 @@ before_script:
   - cd functions && npm install && cd ..
 #script:
 #before_cache (cleaning cache)
-#after_failure:
-  - #$TRAVIS_TEST_RESULT
+after_failure:
+  - echo $TRAVIS_TEST_RESULT
 #after_success:
-  - #$TRAVIS_TEST_RESULT
+  - echo $TRAVIS_TEST_RESULT
 #before_deploy (for each deploy provider)
 deploy:
   skip_cleanup : true
